@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="安装指南这里有一个我认为比较详细的安装指南。基本一步步按着走就可以了，建议先看完全文再跟着安装。里面也有常见问题的解决方案。一般来说只看这一篇就足够了。https:&#x2F;&#x2F;blog.csdn.net&#x2F;github_35807147&#x2F;article&#x2F;details&#x2F;80725642 非常见错误解决方案合集如果你像我一样遇到了一些奇奇怪怪又很难找答案的错误，可以看看下面有没有你想要的解决方案。 ·无法正常">
+<meta property="og:type" content="article">
+<meta property="og:title" content="libsvm安装避坑指南">
+<meta property="og:url" content="https:&#x2F;&#x2F;justacar.github.io&#x2F;wendysblog.github.io&#x2F;2019&#x2F;11&#x2F;30&#x2F;libsvm&#x2F;index.html">
+<meta property="og:site_name" content="Wendy&#39;s blog">
+<meta property="og:description" content="安装指南这里有一个我认为比较详细的安装指南。基本一步步按着走就可以了，建议先看完全文再跟着安装。里面也有常见问题的解决方案。一般来说只看这一篇就足够了。https:&#x2F;&#x2F;blog.csdn.net&#x2F;github_35807147&#x2F;article&#x2F;details&#x2F;80725642 非常见错误解决方案合集如果你像我一样遇到了一些奇奇怪怪又很难找答案的错误，可以看看下面有没有你想要的解决方案。 ·无法正常">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-11-29T17:55:10.482Z">
+<meta name="twitter:card" content="summary">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/wendysblog.github.io/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/wendysblog.github.io/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/wendysblog.github.io/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>libsvm安装避坑指南</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/wendysblog.github.io/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/wendysblog.github.io/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/wendysblog.github.io/">Home</a></li>
+         
+          <li><a href="/wendysblog.github.io/archives/">Writing</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/wendysblog.github.io/2019/11/22/hello-world/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://justacar.github.io/wendysblog.github.io/2019/11/30/libsvm/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://justacar.github.io/wendysblog.github.io/2019/11/30/libsvm/&text=libsvm安装避坑指南" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://justacar.github.io/wendysblog.github.io/2019/11/30/libsvm/&title=libsvm安装避坑指南" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://justacar.github.io/wendysblog.github.io/2019/11/30/libsvm/&is_video=false&description=libsvm安装避坑指南" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=libsvm安装避坑指南&body=Check out this article: https://justacar.github.io/wendysblog.github.io/2019/11/30/libsvm/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://justacar.github.io/wendysblog.github.io/2019/11/30/libsvm/&title=libsvm安装避坑指南" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://justacar.github.io/wendysblog.github.io/2019/11/30/libsvm/&title=libsvm安装避坑指南" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://justacar.github.io/wendysblog.github.io/2019/11/30/libsvm/&title=libsvm安装避坑指南" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://justacar.github.io/wendysblog.github.io/2019/11/30/libsvm/&title=libsvm安装避坑指南" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://justacar.github.io/wendysblog.github.io/2019/11/30/libsvm/&name=libsvm安装避坑指南&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装指南"><span class="toc-number">1.</span> <span class="toc-text">安装指南</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#非常见错误解决方案合集"><span class="toc-number">2.</span> <span class="toc-text">非常见错误解决方案合集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        libsvm安装避坑指南
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Wendy's blog</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-11-29T17:40:38.000Z" itemprop="datePublished">2019-11-30</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="安装指南"><a href="#安装指南" class="headerlink" title="安装指南"></a>安装指南</h2><p>这里有一个我认为比较详细的安装指南。基本一步步按着走就可以了，建议先看完全文再跟着安装。里面也有常见问题的解决方案。一般来说只看这一篇就足够了。<br><a href="https://blog.csdn.net/github_35807147/article/details/80725642" target="_blank" rel="noopener">https://blog.csdn.net/github_35807147/article/details/80725642</a></p>
+<h2 id="非常见错误解决方案合集"><a href="#非常见错误解决方案合集" class="headerlink" title="非常见错误解决方案合集"></a>非常见错误解决方案合集</h2><p>如果你像我一样遇到了一些奇奇怪怪又很难找答案的错误，可以看看下面有没有你想要的解决方案。</p>
+<p><strong>·无法正常使用mex</strong><br>如果你按照教程一步一步完成了，还是发现无法正常运行mex，那可能是缺了某些文件。<br>可以看看下面的链接判断是不是这种情况，然后按链接里的教程走就好了~<br>&lt;<a href="https://blog.csdn.net/LTing_/article/details/91970901" target="_blank" rel="noopener">https://blog.csdn.net/LTing_/article/details/91970901</a> &gt;</p>
+<p><strong>·命名冲突</strong><br>如果出现了以下错误，则可能是发生了命名冲突：<br>找不到 D:\MATLAB\R2014A\toolbox\libsvm-3.21\matlab\svmtrain.exp<br>找不到 D:\MATLAB\R2014A\toolbox\libsvm-3.21\matlab\svmpredict.exp<br>svmtrain和svmpredict函数和matlab自带的svm工具箱中的函数重名了，所以要对文件重命名。具体细节可参考以下链接。<br><a href="https://blog.csdn.net/qq_42183184/article/details/86598104" target="_blank" rel="noopener">https://blog.csdn.net/qq_42183184/article/details/86598104</a><br><a href="https://blog.csdn.net/weixin_42186227/article/details/87880327" target="_blank" rel="noopener">https://blog.csdn.net/weixin_42186227/article/details/87880327</a></p>
+<p> <strong>·无权限</strong><br>这个是最容易解决的，直接右键以管理员身份运行即可。</p>
+<p><strong>·一个简单粗暴的适用性解决办法</strong><br>如果你是为了完成作业按老师要求下载的话，那恭喜你，可以用这个办法解决百度和谷歌都搜不到的难题。<br>只要该下载的都下了，环境也配置好了。那么就可以直接复制成功安装的同学的文件夹替换自己的。能解决各种文件缺失问题。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这里只收集了很小的一部分错误。其他错误基本上搜百度或谷歌就能找到解决方案。希望大家都能顺顺利利地成功安装~</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/wendysblog.github.io/">Home</a></li>
+         
+          <li><a href="/wendysblog.github.io/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装指南"><span class="toc-number">1.</span> <span class="toc-text">安装指南</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#非常见错误解决方案合集"><span class="toc-number">2.</span> <span class="toc-text">非常见错误解决方案合集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://justacar.github.io/wendysblog.github.io/2019/11/30/libsvm/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://justacar.github.io/wendysblog.github.io/2019/11/30/libsvm/&text=libsvm安装避坑指南" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://justacar.github.io/wendysblog.github.io/2019/11/30/libsvm/&title=libsvm安装避坑指南" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://justacar.github.io/wendysblog.github.io/2019/11/30/libsvm/&is_video=false&description=libsvm安装避坑指南" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=libsvm安装避坑指南&body=Check out this article: https://justacar.github.io/wendysblog.github.io/2019/11/30/libsvm/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://justacar.github.io/wendysblog.github.io/2019/11/30/libsvm/&title=libsvm安装避坑指南" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://justacar.github.io/wendysblog.github.io/2019/11/30/libsvm/&title=libsvm安装避坑指南" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://justacar.github.io/wendysblog.github.io/2019/11/30/libsvm/&title=libsvm安装避坑指南" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://justacar.github.io/wendysblog.github.io/2019/11/30/libsvm/&title=libsvm安装避坑指南" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://justacar.github.io/wendysblog.github.io/2019/11/30/libsvm/&name=libsvm安装避坑指南&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 Yaxuan Huang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/wendysblog.github.io/">Home</a></li>
+         
+          <li><a href="/wendysblog.github.io/archives/">Writing</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<span id="busuanzi_container_site_uv">
+  本站访客数<span id="busuanzi_value_site_uv"></span>人次
+</span>
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/wendysblog.github.io/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/wendysblog.github.io/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/wendysblog.github.io/lib/jquery/jquery.min.js"></script>
+<script src="/wendysblog.github.io/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/wendysblog.github.io/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight .code pre").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      target: function(trigger) {
+        return trigger.nextElementSibling;
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+<script src="/wendysblog.github.io/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
